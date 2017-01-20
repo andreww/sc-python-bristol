@@ -6,16 +6,18 @@ import numpy
 import matplotlib.pyplot
 
 
-def analyse (filename, outfile=None):
+def analyse(filename, outfile=None):
+    """Do some data analysis...
+    """
     data = numpy.loadtxt(fname=filename, delimiter=',')
     
     #Create a wide figure to hold the subplots
-    fig = matplotlib.pyplot.figure (figsize=(10.0, 3.0))
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
 
     #create placeholders for plots
-    subplot1 = fig.add_subplot (1,3,1)
-    subplot2 = fig.add_subplot (1,3,2)
-    subplot3 = fig.add_subplot (1,3,3)
+    subplot1 = fig.add_subplot(1,3,1)
+    subplot2 = fig.add_subplot(1,3,2)
+    subplot3 = fig.add_subplot(1,3,3)
 
     subplot1.set_ylabel('average')
     subplot1.plot(numpy.mean(data, axis=0))
@@ -32,13 +34,13 @@ def analyse (filename, outfile=None):
     else:
         matplotlib.pyplot.savefig(outfile)
 
-def detect_problems (filename):
+def detect_problems(filename):
     """Some of our temperature files have problems, check for these
     
-       This function reads a file (filename arguent) and reports on
-       odd looking maxima and minima that add up to zero. This seems
-       to happen when the sensors break.
-       The function does not return any data.
+    This function reads a file (filename arguent) and reports on
+    odd looking maxima and minima that add up to zero. This seems
+    to happen when the sensors break.
+    The function does not return any data.
     """
     data = numpy.loadtxt(fname=filename, delimiter=',')
     
